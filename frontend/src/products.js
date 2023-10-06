@@ -3,7 +3,7 @@ const products = [
     _id: "1",
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
-    description: "Airpod prod",
+    description: "Airpod product from Apple Inc",
     brand: "Apple",
     category: "Electronics",
     price: 99.9,
