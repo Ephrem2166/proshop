@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description: "Airpod product from Apple Inc",
@@ -12,7 +11,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "2",
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/camera.jpg",
     description: "Airpod prod",
@@ -24,7 +22,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "3",
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/mouse.jpg",
     description: "Airpod prod",
@@ -36,7 +33,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "4",
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/alexa.jpg",
     description: "Airpod prod",
@@ -48,7 +44,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "5",
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/playstation.jpg",
     description: "Airpod prod",
