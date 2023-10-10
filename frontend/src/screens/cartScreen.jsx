@@ -23,7 +23,7 @@ const CartScreen = () => {
     dispatch(addToCart({ ...product, qty }));
   };
   const removeFromCartHandler = async (id) => {
-    dispatch(removeFromCart({ id }));
+    dispatch(removeFromCart(id));
   };
   return (
     <Row>
