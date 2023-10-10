@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Row,
@@ -11,8 +12,11 @@ import {
 import { FaTrash } from "react-icons/fa";
 import Message from "../components/Message";
 
-const cartScreen = () => {
+const CartScreen = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return <div>cartScreen</div>;
 };
 
-export default cartScreen;
+export default CartScreen;
