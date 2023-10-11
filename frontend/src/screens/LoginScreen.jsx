@@ -19,7 +19,7 @@ const LoginScrenn = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   const { search } = useLocation();
-  const searchParm = URLSearchParams(search);
+  const searchParm = new URLSearchParams(search);
   const redirect = searchParm.get("redirect") || "/";
 
   useEffect(() => {
@@ -28,9 +28,15 @@ const LoginScrenn = () => {
     }
   }, [userInfo, redirect, navigate]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("Submit");
+    try {
+      const res = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate(redirect);
+    } catch (error) {
+      toast.error(error?.data?.message || error.error);
+    }
   };
   return (
     <FormContainer>
@@ -53,13 +59,22 @@ const LoginScrenn = () => {
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" variant="primary" className="mt-2">
+        <Button
+          type="submit"
+          variant="primary"
+          className="mt-2"
+          disabled={isLoading}
+        >
           Sign In
         </Button>
+        {isLoading && <Loader />}
       </Form>
       <Row className="py-1">
         <Col>
-          New User? <Link to="/register">Register</Link>
+          New User?{" "}
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+            Register
+          </Link>
         </Col>
       </Row>
     </FormContainer>
