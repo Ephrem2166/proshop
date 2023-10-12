@@ -13,6 +13,7 @@ const PlaceOrderScreen = () => {
   const navigate = useNavigate();
   //   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
   useEffect(() => {
     if (!cart.shippingAddress.address) {
       navigate("/shipping");
@@ -20,6 +21,8 @@ const PlaceOrderScreen = () => {
       navigate("/payment");
     }
   }, [cart.paymentMethod, cart.shippingAddress.address, navigate]);
+
+  const placeOrderHandler = async () => {};
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -73,7 +76,53 @@ const PlaceOrderScreen = () => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={4}>Column</Col>
+        <Col md={4}>
+          <Card>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h2>Order Summary</h2>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Items:</Col>
+                  <Col>${cart.itemsPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Shipping:</Col>
+                  <Col>${cart.shippingPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Tax:</Col>
+                  <Col>${cart.taxPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Total:</Col>
+                  <Col>${cart.totalPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                {error && <Message variant="danger">{error}</Message>}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Button
+                  type="button"
+                  className="btn-block"
+                  disabled={cart.cartItems.length === 0}
+                  onClick={placeOrderHandler}
+                >
+                  Place Order
+                </Button>
+                {isLoading && <Loader />}
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
       </Row>
     </>
   );
