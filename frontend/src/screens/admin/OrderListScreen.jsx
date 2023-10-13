@@ -3,9 +3,10 @@ import { Table, Button } from "react-bootstrap";
 import { FaTimes } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
-import { useGetMyOrdersQuery } from "../../slices/orderApiSlice";
+import { useGetOrdersQuery } from "../../slices/orderApiSlice";
+
 const OrderListScreen = () => {
-  const { data: orders, isLoading, error } = useGetMyOrdersQuery();
+  const { data: orders, isLoading, error } = useGetOrdersQuery();
 
   return (
     <>
@@ -13,9 +14,11 @@ const OrderListScreen = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger">{error}</Message>
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
-        <Table striped hover responsive className="table-sm">
+        <Table striped bordered hover responsive className="table-sm">
           <thead>
             <tr>
               <th>ID</th>
@@ -23,7 +26,7 @@ const OrderListScreen = () => {
               <th>DATE</th>
               <th>TOTAL</th>
               <th>PAID</th>
-              <th>Delivered</th>
+              <th>DELIVERED</th>
               <th></th>
             </tr>
           </thead>
@@ -33,7 +36,7 @@ const OrderListScreen = () => {
                 <td>{order._id}</td>
                 <td>{order.user && order.user.name}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
-                <td>{order.totalPrice}</td>
+                <td>${order.totalPrice}</td>
                 <td>
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
