@@ -65,6 +65,7 @@ const ProductEditScreen = () => {
       toast.error(result.error.message);
     } else {
       toast.success("Product Updated Successfully");
+      refetch();
       navigate("/admin/productlist");
     }
   };
@@ -120,6 +121,7 @@ const ProductEditScreen = () => {
                 value={image}
                 onChange={(e) => setImage}
               ></Form.Control>
+              {loadingUpload && <Loader />}
               <Form.Control
                 type="file"
                 label="Choose File"

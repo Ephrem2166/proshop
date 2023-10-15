@@ -1,6 +1,9 @@
 main {
   min-height: 80vh;
 }
+header {
+  color: #08947c;
+}
 
 .rating span {
   margin: 0.1rem;
