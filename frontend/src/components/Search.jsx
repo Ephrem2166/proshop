@@ -9,6 +9,7 @@ const Search = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
+      setKeyword("");
       navigate(`/search/${keyword}`);
     } else {
       navigate("/");
