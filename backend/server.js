@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 import dotenv from "dotenv";
@@ -7,6 +8,8 @@ import cookieParser from "cookie-parser";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
+
 const port = process.env.PORT || 5000;
 
 connectDB();
@@ -23,6 +26,10 @@ app.get("/", (req, res) => {
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/upload", uploadRoutes);
+
+const _dirname = path.resolve();
+app.use("/uploads", express.static(path.join(_dirname, "/uploads")));
 
 app.use(notFound);
 app.use(errorHandler);
