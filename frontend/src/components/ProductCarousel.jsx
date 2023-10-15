@@ -5,14 +5,14 @@ import Message from "./Message";
 import { useGetTopProductsQuery } from "../slices/productsApiSlice";
 
 const ProductCarousel = () => {
-  const { data, isLoading, error } = useGetTopProductsQuery();
+  const { data: products, isLoading, error } = useGetTopProductsQuery();
   return isLoading ? (
     <Loader />
   ) : error ? (
     <Message variant="danger">{error?.data?.message || error.error}</Message>
   ) : (
-    <Carousel pause="hover" className="bg-dark">
-      {data.products.map((product) => (
+    <Carousel pause="hover" className="bg-primary mb-4">
+      {products.map((product) => (
         <Carousel.Item key={product._id}>
           <Link to={`/products/${product._id}`}>
             <Image src={product.image} alt={product.name} fluid />
