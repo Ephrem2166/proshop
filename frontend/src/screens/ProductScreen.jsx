@@ -22,6 +22,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { addToCart } from "../slices/cartSlice";
 import { toast } from "react-toastify";
+import PageTitle from "../components/PageTitle";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -74,6 +75,7 @@ const ProductScreen = () => {
         </Message>
       ) : (
         <>
+          <PageTitle title={product.name} />
           <Row>
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />
