@@ -1,6 +1,6 @@
-# ProShop
+# E-Commerce Platform
 
-An eCommerce platform built with the MERN stack. It is created with M(ongoDb)E(xpress)R(eact)N(ode) Stack. It has user authentication system, an admin user who can add new products in the app, check for order and payments and also choose which order has been delivered from the store. It is built as a final webstack final project for the ALX Software Engineering Program.
+An eCommerce platform built with the MERN stack. It is created with M(ongoDb)E(xpress)R(eact)N(ode) Stack. It has user authentication system, an admin user who can add new products in the app, check for order and payments and also choose which order has been delivered from the store.
 
 ![Homepage](/screens/homepage.png)
 ![Login](/screens/signin.png)
